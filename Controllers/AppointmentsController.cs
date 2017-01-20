@@ -10,107 +10,108 @@ using MentalHealthClinic.Models;
 
 namespace MentalHealthClinic.Controllers
 {
-    public class PatientsController : Controller
+    public class AppointmentsController : Controller
     {
         private ClinicDBContext db = new ClinicDBContext();
 
-        // GET: Patients
+        // GET: Appointments
         public ActionResult Index()
         {
-            return View(db.Patients.ToList());
+            return View(db.Appointments.ToList());
         }
 
-        // GET: Patients/Details/5
+        // GET: Appointments/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Patient patient = db.Patients.Find(id);
-            if (patient == null)
+            Appointment appointment = db.Appointments.Find(id);
+            if (appointment == null)
             {
                 return HttpNotFound();
             }
-            return View(patient);
+            return View(appointment);
         }
 
-        // GET: Patients/Create
+        // GET: Appointments/Create
         public ActionResult Create()
         {
+            PopulateAttendantDropDownList();
             return View();
         }
 
-        // POST: Patients/Create
+        // POST: Appointments/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PatientID,FirstName,LastName,FathersName,NationalId,Education,BirthDate,Descriptions,YearOfFirstReception,MonthOfFirstReception")] Patient patient)
+        public ActionResult Create([Bind(Include = "Id,AppointmentDateTime")] Appointment appointment)
         {
             if (ModelState.IsValid)
             {
-                db.Patients.Add(patient);
+                db.Appointments.Add(appointment);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(patient);
+            return View(appointment);
         }
 
-        // GET: Patients/Edit/5
+        // GET: Appointments/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Patient patient = db.Patients.Find(id);
-            if (patient == null)
+            Appointment appointment = db.Appointments.Find(id);
+            if (appointment == null)
             {
                 return HttpNotFound();
             }
-            return View(patient);
+            return View(appointment);
         }
 
-        // POST: Patients/Edit/5
+        // POST: Appointments/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PatientID,FirstName,LastName,FathersName,NationalId,Education,BirthDate,Descriptions,YearOfFirstReception,MonthOfFirstReception")] Patient patient)
+        public ActionResult Edit([Bind(Include = "Id,AppointmentDateTime")] Appointment appointment)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(patient).State = EntityState.Modified;
+                db.Entry(appointment).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(patient);
+            return View(appointment);
         }
 
-        // GET: Patients/Delete/5
+        // GET: Appointments/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Patient patient = db.Patients.Find(id);
-            if (patient == null)
+            Appointment appointment = db.Appointments.Find(id);
+            if (appointment == null)
             {
                 return HttpNotFound();
             }
-            return View(patient);
+            return View(appointment);
         }
 
-        // POST: Patients/Delete/5
+        // POST: Appointments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Patient patient = db.Patients.Find(id);
-            db.Patients.Remove(patient);
+            Appointment appointment = db.Appointments.Find(id);
+            db.Appointments.Remove(appointment);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -122,6 +123,13 @@ namespace MentalHealthClinic.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        private void PopulateAttendantDropDownList(object selectedAttendant = null)
+        {
+            var attendantsQuery = from d in db.Personnels
+                                   orderby d.LastName
+                                   select d;
+            ViewBag.PersonnelID = new SelectList(attendantsQuery, "DepartmentID", "Name", selectedAttendant);
         }
     }
 }

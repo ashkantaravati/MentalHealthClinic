@@ -26,3 +26,8 @@ body {
     background: #3c5a69;
     color: #ffd41d;
 }
+label{
+    float:right;
+        padding-right: 15px;
+}
+

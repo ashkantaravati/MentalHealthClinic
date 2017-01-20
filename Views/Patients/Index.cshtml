@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<MentalHealthClinic.Models.Patient>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "فهرست بیماران";
 }
 
-<h2>Index</h2>
+<h2>فهرست بیماران</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("ثبت بیمار جدید", "Create")
 </p>
 <table class="table">
     <tr>
@@ -65,9 +65,9 @@
             @Html.DisplayFor(modelItem => item.FirstReceptionDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("ویرایش", "Edit", new { id=item.PatientID }) |
+            @Html.ActionLink("جزئیات", "Details", new { id=item.PatientID }) |
+            @Html.ActionLink("حذف", "Delete", new { id=item.PatientID })
         </td>
     </tr>
 }

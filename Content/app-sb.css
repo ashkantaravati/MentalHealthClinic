@@ -14,6 +14,7 @@ body {
     font-family: Vazir !important;
     /*font-family: 'BYekan';*/
     background-color: #303f46 !important;
+    direction:rtl;
 }
 
 #wrapper {
@@ -137,6 +138,7 @@ body {
         position: absolute;
         width: 250px;
         margin-top: 51px;
+        right: 0px;
     }
 
     .navbar-top-links .dropdown-messages,
