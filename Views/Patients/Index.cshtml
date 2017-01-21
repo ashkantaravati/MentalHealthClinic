@@ -33,7 +33,10 @@
             @Html.DisplayNameFor(model => model.Descriptions)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstReceptionDate)
+            @Html.DisplayNameFor(model => model.YearOfFirstReception)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MonthOfFirstReception)
         </th>
         <th></th>
     </tr>
@@ -62,12 +65,16 @@
             @Html.DisplayFor(modelItem => item.Descriptions)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstReceptionDate)
+            @Html.DisplayFor(modelItem => item.YearOfFirstReception)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MonthOfFirstReception)
         </td>
         <td>
             @Html.ActionLink("ویرایش", "Edit", new { id=item.PatientID }) |
             @Html.ActionLink("جزئیات", "Details", new { id=item.PatientID }) |
-            @Html.ActionLink("حذف", "Delete", new { id=item.PatientID })
+            @Html.ActionLink("حذف", "Delete", new { id=item.PatientID }) |
+            @Html.ActionLink("مراجعات","Index","Appointments",new {id=item.PatientID })
         </td>
     </tr>
 }

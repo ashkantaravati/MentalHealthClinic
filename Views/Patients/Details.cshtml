@@ -1,13 +1,13 @@
 ﻿@model MentalHealthClinic.Models.Patient
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "اطلاعات بیمار";
 }
 
-<h2>Details</h2>
+<h2>اطلاعات بیمار</h2>
 
 <div>
-    <h4>Patient</h4>
+    <h4>بیمار</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -67,16 +67,21 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FirstReceptionDate)
+            @Html.DisplayNameFor(model => model.YearOfFirstReception)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FirstReceptionDate)
+            @Html.DisplayFor(model => model.YearOfFirstReception)
         </dd>
-
+        <dt>
+            @Html.DisplayNameFor(model => model.MonthOfFirstReception)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MonthOfFirstReception)
+        </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PatientID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("ویرایش", "Edit", new { id = Model.PatientID }) |
+    @Html.ActionLink("بازگشت به فهرست بیماران", "Index")
 </p>

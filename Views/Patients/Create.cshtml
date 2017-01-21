@@ -58,8 +58,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.BirthDate, htmlAttributes: new { @class = "control-label" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control datepicker-item" } })
                 @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+                <script type="text/javascript">
+			$(document).ready(function() {
+			    $(".datepicker-item").pDatepicker();
+            		});
+                </script>
             </div>
         </div>
 
@@ -81,7 +86,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MonthOfFirstReception, htmlAttributes: new { @class = "control-label" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MonthOfFirstReception, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EnumDropDownListFor(model => model.MonthOfFirstReception, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.MonthOfFirstReception, "", new { @class = "text-danger" })
             </div>
         </div>

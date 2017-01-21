@@ -12,7 +12,7 @@ namespace MentalHealthClinic.Controllers
 {
     public class PatientsController : Controller
     {
-        private ClinicDBContext db = new ClinicDBContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Patients
         public ActionResult Index()

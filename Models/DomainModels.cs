@@ -9,18 +9,18 @@ namespace MentalHealthClinic.Models
 {
     public enum PersianMonth
     {
-        Farvardin,
-        Ordibehesht,
-        Xordad,
-        Tir,
-        Mordad,
-        Shahrivar,
-        Mehr,
-        Aban,
-        Azar,
-        Dey,
-        Bahman,
-        Esfand
+        فروردین=1,
+        اردیبهشت,
+        خرداد,
+        تیر,
+        مرداد,
+        شهریور,
+        مهر,
+        آبان,
+        آذر,
+        دی,
+        بهمن,
+        اسفند
     }
     public class Patient
     {
@@ -45,6 +45,7 @@ namespace MentalHealthClinic.Models
         //[Display(Name = "تاریخ اولین پذیرش")]
         //public DateTime FirstReceptionDate { get; set; }
         [Required]
+        [MaxLength(4),MinLength(4)]
         [Display(Name = "سال تشکیل پرونده")]
         public string YearOfFirstReception { get; set; }
         [Required]
@@ -64,7 +65,7 @@ namespace MentalHealthClinic.Models
         [Required]
         [Display(Name = "شماره صفحه")]
         public int PageNumber { get; set; }
-
+        
         public int AppointmentID { get; set; }
 
 
@@ -72,28 +73,28 @@ namespace MentalHealthClinic.Models
         public string Descriptions { get; set; }
         [Display(Name = "تصویر گزارش")]
         public string ImagePath { get; set; }
-        [Display(Name = "تاریخ ثبت")]
+        
         public DateTime SubmissionDateTime { get; set; }
-        [Display(Name = "ثبت کننده")]
-        public Personnel Author { get; set; }
-        [Display(Name = "آخرین تغییر دهنده")]
-        public Personnel LastModifier { get; set; }
-        [Display(Name = "تاریخ آخرین تغییر")]
+        //[Display(Name = "ثبت کننده")]
+        //public Expert Author { get; set; }
+        //[Display(Name = "آخرین تغییر دهنده")]
+        //public Expert LastModifier { get; set; }
+       
         public DateTime LastModifiedDateTime { get; set; }
 
     }
-    public enum PersonnelType
+    //public enum PersonnelType
+    //{
+    //    Admin,
+    //    Psychotherapist,
+    //    Receptionist
+    //};
+    public class Expert
     {
-        Admin,
-        Psychotherapist,
-        Receptionist
-    };
-    public class Personnel
-    {
-        public int PersonnelID { get; set; }
+        public int ExpertID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public PersonnelType Type { get; set; }
+        
         public string Descriptions { get; set; }
 
         public virtual ICollection<Appointment> Appointments {get;set;}
@@ -103,28 +104,23 @@ namespace MentalHealthClinic.Models
         public int AppointmentID { get; set; }
         [Required]
         [Display(Name = "تاریخ ملاقات")]
-        public DateTime AppointmentDateTime { get; set; }
+        public string AppointmentDateTime { get; set; }
         [Required]
         [Display(Name = "مراجع")]
         public virtual Patient Attendee { get; set; }
         public int PatientID { get; set; }
         [Required]
         [Display(Name = "متخصص")]
-        public virtual Personnel Attendant { get; set; }
-        public int PersonnelID { get; set; }
+        public virtual Expert Attendant { get; set; }
+        public int ExpertID { get; set; }
+        [Display(Name = "توضیحات")]
+        public string Notes { get; set; }
         public virtual ICollection<Report> Reports { get; set; }
 
     }
-    public class ClinicDBContext : DbContext
+    public enum Gender
     {
-        public ClinicDBContext() : base("DefaultConnection")
-        {
-
-        }
-        public DbSet<Personnel> Personnels { get; set; }
-        public DbSet<Report> Reports { get; set; }
-        public DbSet<Appointment> Appointments { get; set; }
-        public DbSet<Patient> Patients { get; set; }
-
+        آقای,
+        خانم
     }
 }

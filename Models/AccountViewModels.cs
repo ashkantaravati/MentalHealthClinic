@@ -23,6 +23,19 @@ namespace MentalHealthClinic.Models
     public class RegisterViewModel
     {
         [Required]
+
+        [Display(Name = "نام")]
+        public string FirstName { get; set; }
+        [Required]
+
+        [Display(Name = "نام خانوادگی")]
+        public string LastName { get; set; }
+
+        [Required]
+
+        [Display(Name = "عنوان")]
+        public Gender Gender { get; set; }
+        [Required]
         
         [Display(Name = "نام کاربری")]
         public string UserName { get; set; }
@@ -37,6 +50,32 @@ namespace MentalHealthClinic.Models
         [Display(Name = "تکرار گذرواژه")]
         [Compare("Password", ErrorMessage = "گذرواژه و تکرار گذرواژه یکسان نیستند.")]
         public string ConfirmPassword { get; set; }
+
+
+    }
+    public class CreateViewModel
+    {
+        [Required]
+
+        [Display(Name = "نام")]
+        public string FirstName { get; set; }
+        [Required]
+
+        [Display(Name = "نام خانوادگی")]
+        public string LastName { get; set; }
+
+        [Required]
+
+        [Display(Name = "عنوان")]
+        public Gender Gender { get; set; }
+        [Required]
+
+        [Display(Name = "نام کاربری")]
+        public string UserName { get; set; }
+
+        //TODO: Role
+
+
     }
 
     public class ResetPasswordViewModel

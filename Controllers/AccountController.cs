@@ -110,7 +110,7 @@ namespace MentalHealthClinic.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName,Email=model.UserName+"@clinic.local" };
+                var user = new ApplicationUser { UserName = model.UserName,Email=model.UserName+"@clinic.local",FirstName=model.FirstName,LastName=model.LastName,Gender=model.Gender };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

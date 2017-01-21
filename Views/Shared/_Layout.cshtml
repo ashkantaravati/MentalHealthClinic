@@ -4,23 +4,27 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <title>@ViewBag.Title - سامانه مدیریت کلینیک</title>
-    @*<link href="../Content/bootstrap.min.css" rel="stylesheet" />*@
+    
+   
     @Styles.Render("~/content/css")
-    <link href="../Content/app-sb.css" rel="stylesheet" />
-    <link href="../Content/fonts/font-awesome/font-awesome.min.css" rel="stylesheet" />
-    <link href="../Content/app.css" rel="stylesheet" />
+    @Styles.Render("~/content/app-sb")
+    @Styles.Render("~/Content/font-awsome")
+    @Styles.Render("~/Content/persian-datepicker")
     @RenderSection("styles", required: false)
-    @*<script src="../Scripts/jquery-1.11.0.js"></script>*@
-    @*<script src="../Scripts/bootstrap.min.js"></script>*@
+    
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <script src="../Scripts/metisMenu.min.js"></script>
-    <script src="../Scripts/app-sb.js"></script>
+    @Scripts.Render("~/bundles/app-sb")
+    @Scripts.Render("~/bundles/metisMenu")
+    @Scripts.Render("~/bundles/persian-datepicker")
+
+    
     @RenderSection("scripts", required: false)
+    
 </head>
 <body>
+    
     
     <div id="wrapper">
         @Html.Partial("~/Views/Shared/_NavigationBar.cshtml")

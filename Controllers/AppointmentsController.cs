@@ -12,14 +12,18 @@ namespace MentalHealthClinic.Controllers
 {
     public class AppointmentsController : Controller
     {
-        private ClinicDBContext db = new ClinicDBContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Appointments
         public ActionResult Index()
         {
             return View(db.Appointments.ToList());
         }
-
+        // GET: Appointments/Index/5
+        public ActionResult Index(int PatientID)
+        {
+            return View(db.Appointments.Where(ap => ap.PatientID == PatientID).ToList());
+        }
         // GET: Appointments/Details/5
         public ActionResult Details(int? id)
         {
@@ -126,7 +130,7 @@ namespace MentalHealthClinic.Controllers
         }
         private void PopulateAttendantDropDownList(object selectedAttendant = null)
         {
-            var attendantsQuery = from d in db.Personnels
+            var attendantsQuery = from d in db.Experts
                                    orderby d.LastName
                                    select d;
             ViewBag.PersonnelID = new SelectList(attendantsQuery, "DepartmentID", "Name", selectedAttendant);

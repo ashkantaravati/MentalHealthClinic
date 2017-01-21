@@ -1,4 +1,21 @@
-﻿@using Microsoft.AspNet.Identity    
+﻿@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework
+@using MentalHealthClinic.Models
+
+@{
+
+    var CurrentUserLastName="";
+    var CurrentUserTitle = "";
+    if (User.Identity.IsAuthenticated&&User.Identity.Name!="admin")
+    {
+        var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
+        var manager = new UserManager<ApplicationUser>(userStore);
+        var currentUser = manager.FindById(User.Identity.GetUserId());
+        CurrentUserLastName = currentUser.LastName.ToString(); ;
+        CurrentUserTitle =currentUser.Gender.ToString();
+        
+    }
+}
   <!-- Navigation -->
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
@@ -36,7 +53,7 @@
 
                 <li>
 
-                    <a href="#"><i class="fa fa-user fa-fw"></i>وقت بخیر @User.Identity.GetUserName()! <span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-user fa-fw"></i>وقت بخیر @CurrentUserTitle @CurrentUserLastName! <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             @Html.ActionLink("مدیریت حساب", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
